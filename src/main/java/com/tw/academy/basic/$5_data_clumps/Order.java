@@ -5,22 +5,15 @@ public class Order {
     private final User user;
     private int orderNumber;
 
-    private final String buyerName;
-    private final String buyerPhoneNumber;
-    private final String buyerAddress;
-
     public Order(int orderNumber, User user) {
         this.orderNumber = orderNumber;
 
         this.user = user;
-        this.buyerName = this.user.getName();
-        this.buyerPhoneNumber = this.user.getPhoneNumber();
-        this.buyerAddress = this.user.getBuyerAddress();
     }
 
     public String confirm(){
         return String.format("Please confirm buyer information: buyer name is %s, " +
-                "buyer phone number is %s and buyer address is %s.", buyerName, buyerPhoneNumber, buyerAddress);
+                "buyer phone number is %s and buyer address is %s.", this.user.getName(), this.user.getPhoneNumber(), this.user.getBuyerAddress());
     }
 }
 
