@@ -1,5 +1,8 @@
 package com.tw.academy.basic.$7_long_method;
 
+import static com.tw.academy.basic.$7_long_method.OrderReceiptConstant.NEW_LINE;
+import static com.tw.academy.basic.$7_long_method.OrderReceiptConstant.TAB;
+
 public class LineItem {
     private String description;
     private double price;
@@ -39,9 +42,9 @@ public class LineItem {
 
     @Override
     public String toString() {
-        return description + '\t' +
-                price + '\t' +
-                quantity + '\t'
-                + totalAmount() + '\n';
+        return description + TAB
+                + price + TAB
+                + quantity + TAB
+                + totalAmount() + NEW_LINE;
     }
 }
