@@ -27,10 +27,10 @@ public class Order {
     }
 
     public String generateReceipt() {
-        final String lineItems = this.lineItems.stream()
+        final String itemsReceipt = this.lineItems.stream()
                 .map(LineItem::toString)
                 .collect(Collectors.joining());
-        return customerName + address + lineItems;
+        return customerName + address + itemsReceipt;
     }
 
     public double getTotalSalesTax() {

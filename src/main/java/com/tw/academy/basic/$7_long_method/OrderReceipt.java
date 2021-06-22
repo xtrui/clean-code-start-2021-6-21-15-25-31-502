@@ -1,5 +1,7 @@
 package com.tw.academy.basic.$7_long_method;
 
+import static com.tw.academy.basic.$7_long_method.OrderReceiptConstant.*;
+
 /**
  * This class is a example for bad smell;
  *
@@ -14,41 +16,27 @@ public class OrderReceipt {
         this.order = order;
     }
 
-    //Deprecated
-    public String printCustomerName() {
+    public String getCustomerName() {
         return order.getCustomerName();
     }
 
-    //todo: rename -- Tom
     public String printReceipt() {
-        StringBuilder receipt = new StringBuilder();
+        return generateHeader()
+                + generateBody()
+                + generateFooter(order.getTotalSalesTax(), order.getTotal());
+    }
 
-        // print headers
-        receipt.append("======Printing Orders======\n");
+    private String generateBody() {
+        return order.generateReceipt();
+    }
 
-        // print date, bill no, customer name
-        receipt.append(order.getCustomerName());
-        receipt.append(order.getCustomerAddress());
+    private String generateHeader() {
+        return PRINT_ORDERS + NEW_LINE;
+    }
 
-        // prints lineItems
-        double totalSalesTax = 0d;
-        double totalCost = 0d;
-        for (LineItem lineItem : order.getLineItems()) {
-            receipt.append(lineItem);
-
-            // calculate sales tax @ rate of 10%
-            double salesTax = lineItem.totalAmount() * .10;
-            totalSalesTax += salesTax;
-
-            // calculate total amount of lineItem = price * quantity + 10 % sales tax
-            totalCost += lineItem.totalAmount() + salesTax;
-        }
-
-        // prints the state tax
-        receipt.append("Sales Tax").append('\t').append(totalSalesTax);
-
-        // print total amount
-        receipt.append("Total Amount").append('\t').append(totalCost);
-        return receipt.toString();
+    private String generateFooter(double totalSalesTax, double total) {
+        return SALES_TAX + TAB
+                + totalSalesTax + TOTAL_AMOUNT + TAB
+                + total;
     }
 }
