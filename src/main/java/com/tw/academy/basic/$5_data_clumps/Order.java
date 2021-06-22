@@ -2,6 +2,7 @@ package com.tw.academy.basic.$5_data_clumps;
 
 public class Order {
 
+    private final User user;
     private int orderNumber;
 
     private String buyerName;
@@ -11,9 +12,10 @@ public class Order {
     public Order(int orderNumber, User user) {
         this.orderNumber = orderNumber;
 
-        this.buyerName = user.getName();
-        this.buyerPhoneNumber = user.getPhoneNumber();
-        this.buyerAddress = user.getBuyerAddress();
+        this.user = user;
+        this.buyerName = this.user.getName();
+        this.buyerPhoneNumber = this.user.getPhoneNumber();
+        this.buyerAddress = this.user.getBuyerAddress();
     }
 
     public String confirm(){
