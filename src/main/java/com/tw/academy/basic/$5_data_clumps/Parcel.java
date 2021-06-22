@@ -1,6 +1,7 @@
 package com.tw.academy.basic.$5_data_clumps;
 
 public class Parcel {
+    private final User receiver;
     private String size;
     private Double weight;
 
@@ -16,9 +17,10 @@ public class Parcel {
                   User receiver, User sender) {
         this.size = size;
         this.weight = weight;
-        this.receiverName = receiver.getName();
-        this.receiverPhoneNumber = receiver.getPhoneNumber();
-        this.receiverAddress = receiver.getBuyerAddress();
+        this.receiver = receiver;
+        this.receiverName = this.receiver.getName();
+        this.receiverPhoneNumber = this.receiver.getPhoneNumber();
+        this.receiverAddress = this.receiver.getBuyerAddress();
         this.senderName = sender.getName();
         this.senderPhoneNumber = sender.getPhoneNumber();
         this.senderAddress = sender.getBuyerAddress();
