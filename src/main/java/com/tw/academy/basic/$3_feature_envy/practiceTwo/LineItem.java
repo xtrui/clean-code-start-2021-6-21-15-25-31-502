@@ -1,9 +1,9 @@
 package com.tw.academy.basic.$3_feature_envy.practiceTwo;
 
 public class LineItem {
-	private String description;
-	private double price;
-	private int quantity;
+	private final String description;
+	private final double price;
+	private final int quantity;
 
 	public LineItem(String description, double p, int quantity) {
 		super();
@@ -12,15 +12,7 @@ public class LineItem {
 		this.quantity = quantity;
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
-	public double getPrice() {
-		return price;
-	}
-
-	public int getQuantity() {
-		return quantity;
+	public double getTotalPrice(){
+		return price * quantity;
 	}
 }
