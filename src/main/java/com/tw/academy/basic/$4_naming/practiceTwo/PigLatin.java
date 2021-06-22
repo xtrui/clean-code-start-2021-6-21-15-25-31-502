@@ -1,26 +1,32 @@
 package com.tw.academy.basic.$4_naming.practiceTwo;
 
 public class PigLatin {
+
+    public static final String REGEX_SPACE = " ";
+    public static final String DELIMITER_SPACE = " ";
+
     //Move the first letter of each word to the end of it, then add "ay" to the end of the word. Leave punctuation marks untouched.
-    public static String pigIt(String str) {
-        String[] arr_mark={".",",","-",":",";","!","?"};
-        String[] arr = str.split(" ");
-        char c;
-        boolean flag = true;
+    public static String pigIt(String sentence) {
+        String[] punctuationMarks={".",",","-",":",";","!","?"};
+        String[] words = sentence.split(REGEX_SPACE);
+        char needMoveToEndChart;
+        boolean hasPunctuationMarkFlag = false;
 
-        for (int i = 0; i < arr.length; i++){
-            for (int j = 0; j < arr_mark.length; j++)
-                if(arr[i].contains(arr_mark[j]) == true)
-                    flag = false;
+        for (int index = 0; index < words.length; index++){
+            for (String punctuationMark : punctuationMarks)
+                if (words[index].contains(punctuationMark)) {
+                    hasPunctuationMarkFlag = true;
+                    break;
+                }
 
-            if (flag){
-                c = arr[i].charAt(0);
-                arr[i] = arr[i].substring(1, arr[i].length());
-                arr[i] = arr[i].replace(arr[i], arr[i] + c + "ay");
+            if (!hasPunctuationMarkFlag){
+                needMoveToEndChart = words[index].charAt(0);
+                words[index] = words[index].substring(1);
+                words[index] = words[index].replace(words[index], words[index] + needMoveToEndChart + "ay");
             }
-            flag = true;
+            hasPunctuationMarkFlag = false;
         }
 
-        return String.join(" ", arr);
+        return String.join(DELIMITER_SPACE, words);
     }
 }
