@@ -28,6 +28,15 @@ public class LineItem {
         return price * quantity;
     }
 
+    public double getSalesTax() {
+        final double TEN_PERCENT = .10;
+        return totalAmount() * TEN_PERCENT;
+    }
+
+    public double getTotalCost() {
+        return totalAmount() + getSalesTax();
+    }
+
     @Override
     public String toString() {
         return description + '\t' +
